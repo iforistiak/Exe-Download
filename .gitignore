@@ -1,8 +1,36 @@
-node_modules/
-build/
-dist/
-coverage/
+# Operating System Files
 .DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor & IDE Directories
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.sublime-project
+
+# Logs & Runtime Data
+logs/
 *.log
-.env*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build & Dependency Artifacts
+node_modules/
+dist/
+build/
+coverage/
+
+# Environment & Local Secrets
+.env
+.env.local
+.env.*.local
 !.env.example
