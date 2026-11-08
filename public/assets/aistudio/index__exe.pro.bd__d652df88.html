@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exe.pro.bd - Seamless One-Click Software Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Plus Jakarta Sans for premium modern aesthetics) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            500: '#10b981', // Emerald Green Accent
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                            accent: '#34d399'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        /* Smooth moving background gradient */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animated-gradient-bg {
+            background: linear-gradient(-45deg, #f8fafc, #f0fdf4, #f4f7f6, #f0fdf4, #eafaf1, #f8fafc);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        /* Premium Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #059669;
+        }
+
+        /* Pulsing Glow button */
+        @keyframes subtle-glow {
+            0%, 100% { box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.15); }
+            50% { box-shadow: 0 4px 25px 0 rgba(16, 185, 129, 0.35); }
+        }
+        .glowing-btn {
+            animation: subtle-glow 3s infinite;
+        }
+
+        /* Popup Slide In Animation */
+        @keyframes scaleUp {
+            from { transform: scale(0.95) translateY(15px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .animate-scale-up {
+            animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Hide Scrollbar for Top Picks Row */
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Floating Bubble Animations */
+        @keyframes float-bubble-1 {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) translateX(10px) rotate(5deg); }
+            66% { transform: translateY(10px) translateX(-15px) rotate(-10deg); }
+        }
+        @keyframes float-bubble-2 {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            40% { transform: translateY(-25px) translateX(-15px) rotate(-8deg); }
+            70% { transform: translateY(15px) translateX(10px) rotate(12deg); }
+        }
+        @keyframes float-bubble-3 {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            30% { transform: translateY(20px) translateX(15px) rotate(15deg); }
+            60% { transform: translateY(-15px) translateX(-10px) rotate(-15deg); }
+        }
+
+        .bubble-anim-1 { animation: float-bubble-1 12s ease-in-out infinite; }
+        .bubble-anim-2 { animation: float-bubble-2 15s ease-in-out infinite; }
+        .bubble-anim-3 { animation: float-bubble-3 14s ease-in-out infinite; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between animated-gradient-bg text-slate-800 selection:bg-brand-500 selection:text-white">
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/75 border-b border-brand-100/50 transition-all duration-300">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo / Domain Name -->
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <div class="h-11 w-11 bg-gradient-to-tr from-brand-600 to-emerald-400 rounded-2xl flex items-center justify-center text-white text-xl shadow-md shadow-brand-500/20">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-tight text-slate-900">exe<span class="text-brand-500">.pro.bd</span></span>
+                        <p class="text-[10px] text-brand-600 font-extrabold tracking-wider uppercase">Direct Download Engine</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Menu (Desktop) -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-bold">
+                    <a href="#" class="text-brand-600 border-b-2 border-brand-500 px-1 pb-1 transition duration-150">Home</a>
+                    <a href="#top-picks-section" class="text-slate-600 hover:text-brand-600 px-1 pb-1 transition duration-150">Top Picks</a>
+                    <a href="#softwares-section" class="text-slate-600 hover:text-brand-600 px-1 pb-1 transition duration-150">All Softwares</a>
+                    <a href="#request-section" class="text-slate-600 hover:text-brand-600 px-1 pb-1 transition duration-150">Request App</a>
+                    <!-- Custom Contact Link -->
+                    <a href="https://t.me/exe_pro_bd" target="_blank" rel="noopener noreferrer" class="text-slate-600 hover:text-brand-600 flex items-center gap-1.5 px-1.5 py-1 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 transition duration-150">
+                        <i class="fa-brands fa-telegram text-emerald-500"></i> Contact Support
+                    </a>
+                </nav>
+
+                <!-- Header Actions -->
+                <div class="flex items-center gap-4">
+                    <a href="#softwares-section" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-brand-500 to-emerald-600 hover:from-brand-600 hover:to-emerald-700 rounded-xl transition-all duration-300 shadow-lg shadow-brand-500/15 hover:scale-105">
+                        <i class="fa-solid fa-cloud-arrow-down mr-2 animate-bounce"></i> Explore Hub
+                    </a>
+                    <!-- Mobile menu button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-slate-900 focus:outline-none">
+                        <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 border-b border-brand-100 px-4 pt-2 pb-4 space-y-2">
+            <a href="#" class="block px-3 py-2 rounded-xl text-base font-semibold text-brand-600 bg-brand-50">Home</a>
+            <a href="#top-picks-section" class="block px-3 py-2 rounded-xl text-base font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50">Top Picks</a>
+            <a href="#softwares-section" class="block px-3 py-2 rounded-xl text-base font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50">All Softwares</a>
+            <a href="#request-section" class="block px-3 py-2 rounded-xl text-base font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50">Request App</a>
+            <a href="https://t.me/exe_pro_bd" target="_blank" rel="noopener noreferrer" class="block px-3 py-2 rounded-xl text-base font-semibold text-slate-600 hover:text-brand-600 hover:bg-slate-50">Contact Support</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section with Floating Colorful Bubbles -->
+        <section class="relative overflow-hidden pt-12 pb-12 lg:pt-20 lg:pb-16 bg-gradient-to-b from-white/30 to-transparent">
+            <!-- Floating Soft Gradient Bubbles (Pointer Events None so they don't block interaction) -->
+            <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+                <!-- Chrome Theme Bubble -->
+                <div class="absolute bubble-anim-1 top-10 left-[8%] md:left-[15%] w-14 h-14 md:w-20 md:h-20 rounded-2xl bg-gradient-to-tr from-amber-400/20 to-red-400/20 border border-amber-300/30 flex items-center justify-center text-amber-500 shadow-xl shadow-amber-500/5">
+                    <i class="fa-brands fa-chrome text-2xl md:text-3xl"></i>
+                </div>
+                <!-- Dev Theme Bubble -->
+                <div class="absolute bubble-anim-2 top-32 right-[8%] md:right-[15%] w-16 h-16 md:w-24 md:h-24 rounded-3xl bg-gradient-to-tr from-blue-400/20 to-indigo-500/20 border border-blue-300/30 flex items-center justify-center text-indigo-500 shadow-xl shadow-indigo-500/5">
+                    <i class="fa-solid fa-code text-3xl"></i>
+                </div>
+                <!-- Spotify Theme Bubble -->
+                <div class="absolute bubble-anim-3 bottom-5 left-[5%] md:left-[10%] w-16 h-16 md:w-22 md:h-22 rounded-full bg-gradient-to-tr from-emerald-400/20 to-teal-500/20 border border-emerald-300/30 flex items-center justify-center text-brand-500 shadow-xl shadow-emerald-500/5">
+                    <i class="fa-brands fa-spotify text-3xl"></i>
+                </div>
+                <!-- File/Cloud Bubble -->
+                <div class="absolute bubble-anim-1 bottom-10 right-[6%] md:right-[12%] w-14 h-14 md:w-20 md:h-20 rounded-2xl bg-gradient-to-tr from-purple-400/20 to-pink-500/20 border border-pink-300/30 flex items-center justify-center text-pink-500 shadow-xl shadow-pink-500/5">
+                    <i class="fa-solid fa-cloud text-2xl"></i>
+                </div>
+                <!-- Windows/OS Bubble -->
+                <div class="absolute bubble-anim-2 top-6 right-[45%] w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-tr from-sky-400/20 to-cyan-400/20 border border-sky-300/20 flex items-center justify-center text-sky-500 shadow-lg">
+                    <i class="fa-brands fa-windows text-xl md:text-2xl"></i>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <span class="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full text-xs font-bold bg-brand-500/10 text-brand-700 border border-brand-500/20 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span> Ultra-Fast Software Directory
+                </span>
+                
+                <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight mb-6 leading-tight">
+                    Every Essential Utility <br class="hidden sm:inline">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-emerald-500">Just One Click Away!</span>
+                </h1>
+                
+                <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-600 mb-10 leading-relaxed font-semibold">
+                    Download premium, verified PC utilities, developer components, and browser extensions without redirects or spam advertisements.
+                </p>
+
+                <!-- Search Container -->
+                <div class="max-w-xl mx-auto mb-6">
+                    <div class="relative rounded-2xl bg-white/90 p-2 border border-brand-100 shadow-xl flex items-center transition-all duration-300 focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/10">
+                        <i class="fa-solid fa-magnifying-glass text-slate-400 ml-4 mr-2"></i>
+                        <input type="text" id="search-input" placeholder="Type to search software instantly..." class="w-full bg-transparent border-0 py-3 px-2 text-slate-800 focus:ring-0 focus:outline-none placeholder:text-slate-400 text-base font-semibold">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Controls Selector -->
+        <section class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+            <div class="flex flex-col items-center mb-8">
+                <h2 class="text-sm font-extrabold uppercase tracking-widest text-slate-400 mb-4">Filter Repository</h2>
+                <!-- Category Navigation -->
+                <div class="flex flex-wrap justify-center gap-2" id="category-container">
+                    <!-- Dynamic categories -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Picks Segment (Filtered by Selected Category) -->
+        <section id="top-picks-section" class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6 mb-10">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-2">
+                    <span class="flex h-3 w-3 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-500"></span>
+                    </span>
+                    <h2 class="text-xl font-black text-slate-900 tracking-tight" id="top-picks-title">Top Downloaded Utilities</h2>
+                </div>
+                <!-- Navigation buttons for manual scroll -->
+                <div class="flex gap-2">
+                    <button id="scroll-left" class="w-10 h-10 rounded-xl bg-white border border-slate-200 hover:border-brand-500 text-slate-600 hover:text-brand-600 flex items-center justify-center transition-all shadow-sm active:scale-95">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </button>
+                    <button id="scroll-right" class="w-10 h-10 rounded-xl bg-white border border-slate-200 hover:border-brand-500 text-slate-600 hover:text-brand-600 flex items-center justify-center transition-all shadow-sm active:scale-95">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scroll Wrapper -->
+            <div id="top-picks-scroll" class="flex overflow-x-auto gap-5 snap-x scrollbar-none pb-4 scroll-smooth" style="scroll-snap-type: x mandatory;">
+                <!-- Cards injected via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Catalog Compact Grid Section -->
+        <section id="softwares-section" class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="border-t border-slate-200/60 pt-8 mb-6">
+                <h2 class="text-xl font-black text-slate-900 mb-6" id="grid-list-title">All Software List</h2>
+            </div>
+
+            <!-- COMPACT Grid Line (6/7 items on ultra wide, 5 on lg, optimized for sleek look) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-4" id="software-grid">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- Empty Search State -->
+            <div id="no-results" class="hidden text-center py-20">
+                <div class="h-16 w-16 bg-white border border-slate-200 rounded-full flex items-center justify-center mx-auto text-slate-400 mb-4 text-2xl shadow-sm">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800 mb-1">No Softwares Found</h3>
+                <p class="text-slate-500 text-sm font-semibold">Try searching a different utility name or change the active filter.</p>
+            </div>
+        </section>
+
+        <!-- Software Request Section (FORM WITH FETCH API) -->
+        <section id="request-section" class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="bg-white/80 backdrop-blur-md rounded-3xl border border-brand-100 shadow-xl p-8 sm:p-10 relative overflow-hidden">
+                <!-- Decorative background elements -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-500/5 rounded-full blur-2xl"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-500/5 rounded-full blur-2xl"></div>
+
+                <div class="relative z-10">
+                    <div class="text-center mb-8">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-brand-500/10 text-brand-700 border border-brand-500/20">
+                            ON-DEMAND APP REQ
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-3 mb-2">Can't find a software?</h2>
+                        <p class="text-slate-500 font-semibold text-sm">Submit details below, and we will upload it and notify you via email.</p>
+                    </div>
+
+                    <!-- Custom Message Banner for Failures -->
+                    <div id="error-banner" class="hidden mb-6 p-4 rounded-2xl bg-red-50 border border-red-200 text-red-600 text-sm font-semibold flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span id="error-message">Sorry, something went wrong. Please try again later.</span>
+                    </div>
+
+                    <!-- Formspree Integration Form -->
+                    <form action="https://formspree.io/f/mdarqeya" method="POST" id="software-request-form" class="space-y-5">
+                        <!-- User Name -->
+                        <div>
+                            <label for="user-name" class="block text-slate-700 text-xs font-bold uppercase tracking-wider mb-2">Your Name *</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                                    <i class="fa-regular fa-user"></i>
+                                </div>
+                                <input type="text" name="name" id="user-name" required placeholder="e.g. John Doe" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-slate-800 text-sm font-semibold focus:outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all duration-300">
+                            </div>
+                        </div>
+
+                        <!-- Software Name -->
+                        <div>
+                            <label for="req-software-name" class="block text-slate-700 text-xs font-bold uppercase tracking-wider mb-2">Software / App Name *</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                                    <i class="fa-solid fa-laptop-code"></i>
+                                </div>
+                                <input type="text" name="software_name" id="req-software-name" required placeholder="e.g. Photoshop 2026, CorelDraw" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-slate-800 text-sm font-semibold focus:outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all duration-300">
+                            </div>
+                        </div>
+
+                        <!-- User Email -->
+                        <div>
+                            <label for="user-email" class="block text-slate-700 text-xs font-bold uppercase tracking-wider mb-2">Email Address *</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <input type="email" name="email" id="user-email" required placeholder="e.g. john@example.com" class="w-full bg-slate-50/50 border border-slate-200 rounded-xl py-3 pl-11 pr-4 text-slate-800 text-sm font-semibold focus:outline-none focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 transition-all duration-300">
+                            </div>
+                            <p class="text-[11px] text-slate-400 mt-1.5 font-semibold font-sans">We will drop you a notification email once the file is hosted online.</p>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-2">
+                            <button type="submit" id="submit-btn" class="glowing-btn w-full inline-flex items-center justify-center gap-2 py-4 px-6 bg-gradient-to-r from-brand-500 to-emerald-600 hover:from-brand-600 hover:to-emerald-700 text-white font-extrabold rounded-xl transition-all duration-300 transform active:scale-[0.98]">
+                                <i class="fa-regular fa-paper-plane"></i> Send Request
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Merits Section -->
+        <section id="about-section" class="bg-white/45 border-y border-brand-100/60 py-16 backdrop-blur-md">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Engineered For Quick Access</h2>
+                <p class="max-w-xl mx-auto text-slate-500 text-sm mb-12 font-semibold font-sans">Simple, robust, and completely secure architecture optimized for quick package deliveries.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200/80 hover:border-brand-300 hover:shadow-lg transition-all duration-300">
+                        <div class="w-12 h-12 bg-brand-5 rounded-2xl flex items-center justify-center text-brand-600 text-xl mb-4">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Verified Integrity</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed font-semibold font-sans">Every single deployment file is checked by automated antivirus bots before hosting on cloud databases.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200/80 hover:border-brand-300 hover:shadow-lg transition-all duration-300">
+                        <div class="w-12 h-12 bg-brand-5 rounded-2xl flex items-center justify-center text-brand-600 text-xl mb-4">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Zero Bandwidth Limits</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed font-semibold font-sans">By using cloud mirrors we guarantee full network utility speed during file transmissions.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-white border border-slate-200/80 hover:border-brand-300 hover:shadow-lg transition-all duration-300">
+                        <div class="w-12 h-12 bg-brand-5 rounded-2xl flex items-center justify-center text-brand-600 text-xl mb-4">
+                            <i class="fa-solid fa-face-smile"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Minimal Footprint</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed font-semibold font-sans">An ultra lightweight framework built using premium CSS configurations designed to load instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Custom Success Popup Modal -->
+    <div id="success-modal" class="hidden fixed inset-0 z-50 items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md transition-all duration-300 opacity-0">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full border border-brand-100 shadow-2xl text-center relative overflow-hidden animate-scale-up">
+            <!-- Green glowing effect behind checkmark -->
+            <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-32 h-32 bg-brand-500/10 rounded-full blur-xl"></div>
+            
+            <!-- Success Icon -->
+            <div class="relative mx-auto w-16 h-16 bg-brand-50 rounded-full flex items-center justify-center text-brand-500 text-3xl mb-6 shadow-inner">
+                <i class="fa-solid fa-circle-check animate-bounce"></i>
+            </div>
+            
+            <h3 class="text-2xl font-black text-slate-900 mb-2">Request Filed Successfully!</h3>
+            <p class="text-slate-500 font-semibold text-sm leading-relaxed mb-6 font-sans">
+                Your software submission request has been recorded. Our team will index it shortly and send you an email configuration alert.
+            </p>
+            
+            <button id="modal-close-btn" class="w-full py-3.5 bg-gradient-to-r from-brand-500 to-emerald-600 hover:from-brand-600 hover:to-emerald-700 text-white font-extrabold rounded-2xl transition-all duration-200 shadow-lg shadow-brand-500/20 active:scale-95 focus:outline-none">
+                Acknowledge & Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-brand-900/10 pt-16 pb-8">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- Branding Column -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="h-9 w-9 bg-brand-500 rounded-xl flex items-center justify-center text-slate-900 text-md">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-white">exe<span class="text-brand-500">.pro.bd</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-sm leading-relaxed mb-6 font-medium font-sans">
+                        The ultimate one-stop digital repository. We specialize in bringing clean utility installations straight to your desktop without redirects.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://t.me/exe_pro_bd" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-slate-800 hover:bg-brand-500/20 text-slate-300 hover:text-brand-500 rounded-xl flex items-center justify-center transition-colors duration-200">
+                            <i class="fa-brands fa-telegram animate-pulse"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 hover:bg-brand-500/20 text-slate-300 hover:text-brand-500 rounded-xl flex items-center justify-center transition-colors duration-200">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-slate-800 hover:bg-brand-500/20 text-slate-300 hover:text-brand-500 rounded-xl flex items-center justify-center transition-colors duration-200">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Fast Links -->
+                <div>
+                    <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wider">Fast Links</h4>
+                    <ul class="space-y-3 text-sm font-semibold font-sans">
+                        <li><a href="#" class="hover:text-brand-400 transition-colors">Home Hub</a></li>
+                        <li><a href="#softwares-section" class="hover:text-brand-400 transition-colors">Index Repository</a></li>
+                        <li><a href="#about-section" class="hover:text-brand-400 transition-colors">Safety Standard</a></li>
+                        <li><a href="#request-section" class="hover:text-brand-400 transition-colors">Submit Request</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Soft Request -->
+                <div>
+                    <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wider">Contact Direct</h4>
+                    <p class="text-sm text-slate-400 mb-4 leading-relaxed font-semibold font-sans">
+                        Facing an issue with a setup build? Send us a direct inquiry and we'll rebuild the link structure.
+                    </p>
+                    <!-- Updated to new request email address -->
+                    <a href="mailto:hireistiak@gmail.com" class="inline-flex items-center gap-2 text-sm text-brand-400 hover:text-brand-300 font-bold transition-colors">
+                        <i class="fa-regular fa-envelope"></i> hireistiak@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Footer Bar -->
+            <div class="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 font-medium font-sans">
+                <p>&copy; 2026 exe.pro.bd. All rights reserved.</p>
+                <p class="flex items-center gap-1">
+                    Crafted with <span class="text-brand-400 font-bold"><i class="fa-solid fa-heart text-red-500 animate-pulse"></i> EXE Studio</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Software Database Configuration -->
+    <script>
+        /**
+         * ==========================================
+         * CUSTOM DATABASE CONFIGURATION (English)
+         * ==========================================
+         * Add, modify, or delete softwares here easily.
+         * Set "topPick: true" to feature a card in the horizontal scroll bar!
+         */
+        const softwares = [
+            {
+                id: 1,
+                name: "Google Chrome",
+                category: "browser",
+                version: "v121.0.1",
+                size: "95 MB",
+                topPick: true,
+                imageUrl: "https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?q=80&w=350&auto=format&fit=crop", 
+                downloadUrl: "https://www.google.com/chrome/",
+                description: "The world's most popular web browser built for speed and security."
+            },
+            {
+                id: 2,
+                name: "VLC Media Player",
+                category: "multimedia",
+                version: "v3.0.20",
+                size: "40 MB",
+                topPick: true,
+                imageUrl: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=350&auto=format&fit=crop",
+                downloadUrl: "https://www.videolan.org/vlc/",
+                description: "Robust open source multimedia player that plays almost every format."
+            },
+            {
+                id: 3,
+                name: "VS Code",
+                category: "developer",
+                version: "v1.86.0",
+                size: "88 MB",
+                topPick: true,
+                imageUrl: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=350&auto=format&fit=crop",
+                downloadUrl: "https://code.visualstudio.com/download",
+                description: "Highly versatile light editor for modern developers."
+            },
+            {
+                id: 4,
+                name: "WinRAR Utility",
+                category: "utility",
+                version: "v6.24",
+                size: "3.5 MB",
+                topPick: false,
+                imageUrl: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=350&auto=format&fit=crop",
+                downloadUrl: "https://www.win-rar.com/download.html",
+                description: "Essential compression tool to unpack ZIP/RAR packages."
+            },
+            {
+                id: 5,
+                name: "OBS Studio",
+                category: "multimedia",
+                version: "v30.0.2",
+                size: "128 MB",
+                topPick: true,
+                imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=350&auto=format&fit=crop",
+                downloadUrl: "https://obsproject.com/download",
+                description: "Professional open source broadcasting and recording suite."
+            },
+            {
+                id: 6,
+                name: "IDM Downloader",
+                category: "utility",
+                version: "v6.42",
+                size: "11 MB",
+                topPick: true,
+                imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=350&auto=format&fit=crop",
+                downloadUrl: "https://www.internetdownloadmanager.com/download.html",
+                description: "Boost file downloads up to 5 times faster with dynamic segregation."
+            },
+            {
+                id: 7,
+                name: "Spotify Desktop",
+                category: "multimedia",
+                version: "v1.2.25",
+                size: "82 MB",
+                topPick: false,
+                imageUrl: "https://images.unsplash.com/photo-1614680376593-902f74fa0d41?q=80&w=350&auto=format&fit=crop",
+                downloadUrl: "https://www.spotify.com/us/download/windows/",
+                description: "Official PC music client offering global music and podcasts."
+            },
+            {
+                id: 8,
+                name: "Brave Browser",
+                category: "browser",
+                version: "v1.62.1",
+                size: "98 MB",
+                topPick: true,
+                imageUrl: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=350&auto=format&fit=crop",
+                downloadUrl: "https://brave.com/download/",
+                description: "Privacy optimized chromium core browser that blocks advertisements."
+            },
+            {
+                id: 9,
+                name: "NodeJS LTS Build",
+                category: "developer",
+                version: "v20.11.0",
+                size: "30 MB",
+                topPick: false,
+                imageUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=350&auto=format&fit=crop",
+                downloadUrl: "https://nodejs.org/en/download",
+                description: "JavaScript runtime engine designed for scalable network servers."
+            },
+            {
+                id: 10,
+                name: "Discord Messenger",
+                category: "utility",
+                version: "v1.0.9",
+                size: "92 MB",
+                topPick: true,
+                imageUrl: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=350&auto=format&fit=crop",
+                downloadUrl: "https://discord.com/download",
+                description: "Voice and chat client tailored for gamers and developer teams."
+            },
+            {
+                id: 11,
+                name: "Git Version Control",
+                category: "developer",
+                version: "v2.43.0",
+                size: "55 MB",
+                topPick: true,
+                imageUrl: "https://images.unsplash.com/photo-1618401471353-b98aedd07871?q=80&w=350&auto=format&fit=crop",
+                downloadUrl: "https://git-scm.com/downloads",
+                description: "Distributed version control system to track file modifications."
+            },
+            {
+                id: 12,
+                name: "Figma Desktop",
+                category: "developer",
+                version: "v116.15",
+                size: "104 MB",
+                topPick: true,
+                imageUrl: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&w=350&auto=format&fit=crop",
+                downloadUrl: "https://www.figma.com/downloads/",
+                description: "Collaborative interface mockup studio for modern UI/UX engineers."
+            }
+        ];
+
+        // Categories Map
+        const categories = {
+            all: "All Utilities",
+            browser: "Browsers",
+            multimedia: "Multimedia",
+            developer: "Developer Tools",
+            utility: "Utilities"
+        };
+
+        // State variables
+        let selectedCategory = 'all';
+        let searchQuery = '';
+
+        // DOM Elements
+        const softwareGrid = document.getElementById('software-grid');
+        const topPicksScroll = document.getElementById('top-picks-scroll');
+        const topPicksSection = document.getElementById('top-picks-section');
+        const topPicksTitle = document.getElementById('top-picks-title');
+        const gridListTitle = document.getElementById('grid-list-title');
+        const categoryContainer = document.getElementById('category-container');
+        const searchInput = document.getElementById('search-input');
+        const noResults = document.getElementById('no-results');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        const scrollLeftBtn = document.getElementById('scroll-left');
+        const scrollRightBtn = document.getElementById('scroll-right');
+
+        // Form & Success Modal Elements
+        const requestForm = document.getElementById('software-request-form');
+        const successModal = document.getElementById('success-modal');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const errorBanner = document.getElementById('error-banner');
+        const errorMessage = document.getElementById('error-message');
+
+        // Toggle mobile menu
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Initialize Categories UI
+        function renderCategories() {
+            categoryContainer.innerHTML = '';
+            Object.keys(categories).forEach(key => {
+                const button = document.createElement('button');
+                button.className = `px-5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-300 transform active:scale-95 flex items-center gap-2 ${
+                    selectedCategory === key 
+                        ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/20 font-black' 
+                        : 'bg-white hover:bg-slate-100 text-slate-600 border border-slate-200/60'
+                }`;
+                button.textContent = categories[key];
+                button.addEventListener('click', () => {
+                    selectedCategory = key;
+                    renderCategories();
+                    renderTopPicks();
+                    renderSoftwares();
+                });
+                categoryContainer.appendChild(button);
+            });
+        }
+
+        // Render Category-Specific Top Picks Horizontal Scroll Row
+        function renderTopPicks() {
+            // Filter top picks based on active selectedCategory
+            const topPicks = softwares.filter(item => 
+                item.topPick && 
+                (selectedCategory === 'all' || item.category === selectedCategory)
+            );
+
+            // Update top picks row header title
+            if (selectedCategory === 'all') {
+                topPicksTitle.textContent = "Top Downloaded Utilities";
+                gridListTitle.textContent = "All Software List";
+            } else {
+                topPicksTitle.textContent = `${categories[selectedCategory]} - Featured Top Picks`;
+                gridListTitle.textContent = `All ${categories[selectedCategory]}`;
+            }
+
+            // Hide the segment completely if no top picks exist for this category
+            if (topPicks.length === 0) {
+                topPicksSection.classList.add('hidden');
+                return;
+            } else {
+                topPicksSection.classList.remove('hidden');
+            }
+
+            topPicksScroll.innerHTML = '';
+            
+            topPicks.forEach(software => {
+                const card = document.createElement('div');
+                card.className = "min-w-[280px] sm:min-w-[320px] snap-start bg-white/70 border border-slate-200/60 hover:border-brand-500 rounded-3xl p-4 flex gap-4 transition-all duration-300 hover:shadow-lg hover:shadow-brand-500/5 backdrop-blur-md group relative overflow-hidden";
+                card.innerHTML = `
+                    <div class="w-20 h-20 rounded-2xl overflow-hidden bg-slate-100 flex-shrink-0 relative">
+                        <img src="${software.imageUrl}" alt="" class="w-full h-full object-cover transition-transform group-hover:scale-105" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=250&auto=format&fit=crop';">
+                    </div>
+                    <div class="flex flex-col justify-between overflow-hidden">
+                        <div>
+                            <div class="flex items-center gap-1.5 justify-between">
+                                <span class="text-[10px] font-black uppercase text-brand-600 tracking-wide">${software.category}</span>
+                                <span class="text-[9px] font-bold text-slate-400">${software.size}</span>
+                            </div>
+                            <h3 class="text-sm font-bold text-slate-900 group-hover:text-brand-600 transition-colors line-clamp-1 mb-1">${software.name}</h3>
+                            <p class="text-slate-500 text-[11px] line-clamp-2 leading-relaxed font-semibold">${software.description}</p>
+                        </div>
+                        <div class="pt-2">
+                            <a href="${software.downloadUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-extrabold text-brand-600 hover:text-brand-500">
+                                Direct Get <i class="fa-solid fa-arrow-right-long text-[9px] group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                topPicksScroll.appendChild(card);
+            });
+        }
+
+        // Horizontal Scroll Buttons Trigger
+        scrollLeftBtn.addEventListener('click', () => {
+            topPicksScroll.scrollBy({ left: -320, behavior: 'smooth' });
+        });
+
+        scrollRightBtn.addEventListener('click', () => {
+            topPicksScroll.scrollBy({ left: 320, behavior: 'smooth' });
+        });
+
+        // Render Software Grid Cards
+        function renderSoftwares() {
+            // Apply filtering logic
+            const filtered = softwares.filter(item => {
+                const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      item.description.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            // Toggle No Results View
+            if (filtered.length === 0) {
+                softwareGrid.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                softwareGrid.classList.remove('hidden');
+                noResults.classList.add('hidden');
+            }
+
+            softwareGrid.innerHTML = '';
+            filtered.forEach(software => {
+                const card = document.createElement('div');
+                // COMPACT Elegant Card Style (Optimized for multiple grids per row)
+                card.className = "group relative rounded-2xl bg-white/70 border border-slate-200/70 hover:border-brand-500/50 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:shadow-xl hover:shadow-brand-500/5 transform hover:-translate-y-1 backdrop-blur-md";
+                
+                card.innerHTML = `
+                    <div>
+                        <!-- Thumbnail Wrapper -->
+                        <div class="relative aspect-[16/11] w-full overflow-hidden bg-slate-50 border-b border-slate-100">
+                            <img src="${software.imageUrl}" alt="" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-95 group-hover:opacity-100" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=250&auto=format&fit=crop';">
+                            <span class="absolute top-2.5 right-2.5 bg-slate-900/85 backdrop-blur-sm text-brand-300 text-[10px] font-extrabold px-1.5 py-0.5 rounded-md border border-slate-700/30">
+                                ${software.size}
+                            </span>
+                        </div>
+                        
+                        <!-- Content Body -->
+                        <div class="p-4">
+                            <div class="flex items-start justify-between gap-1 mb-1">
+                                <h3 class="text-sm font-bold text-slate-800 group-hover:text-brand-600 transition-colors duration-200 line-clamp-1">
+                                    ${software.name}
+                                </h3>
+                                <span class="text-[9px] uppercase font-black text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200/50 flex-shrink-0">
+                                    ${software.version}
+                                </span>
+                            </div>
+                            <p class="text-slate-500 text-xs line-clamp-2 leading-relaxed font-semibold">
+                                ${software.description}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Action Button Container -->
+                    <div class="p-4 pt-0">
+                        <a href="${software.downloadUrl}" target="_blank" rel="noopener noreferrer" class="glowing-btn w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 bg-gradient-to-r from-brand-500 to-emerald-600 hover:from-brand-600 hover:to-emerald-700 text-white text-xs font-extrabold rounded-xl transition-all duration-300 group-hover:scale-[1.01] active:scale-[0.98]">
+                            <i class="fa-solid fa-cloud-arrow-down group-hover:translate-y-0.5 transition-transform text-[10px]"></i> Get File
+                        </a>
+                    </div>
+                `;
+                
+                softwareGrid.appendChild(card);
+            });
+        }
+
+        // Intercept Form Submission with JavaScript Fetch
+        requestForm.addEventListener('submit', async function(e) {
+            e.preventDefault(); // Stop standard redirect
+            
+            // Clear any previous error message
+            errorBanner.classList.add('hidden');
+            
+            // Get original button content and change button to loading/sending state
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Sending...`;
+            
+            const formData = new FormData(requestForm);
+            
+            try {
+                // Submit form to Formspree via Fetch API
+                const response = await fetch(requestForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Reset form fields
+                    requestForm.reset();
+                    
+                    // Show custom success popup beautifully
+                    successModal.classList.remove('hidden');
+                    successModal.classList.add('flex');
+                    setTimeout(() => {
+                        successModal.classList.remove('opacity-0');
+                        successModal.classList.add('opacity-100');
+                    }, 50);
+                } else {
+                    const data = await response.json();
+                    if (data && data.errors) {
+                        showError(data.errors.map(err => err.message).join(', '));
+                    } else {
+                        showError('Sorry! Request dispatch failed due to an engine error.');
+                    }
+                }
+            } catch (err) {
+                showError('Network error! Please check your internet interface and retry.');
+            } finally {
+                // Restore button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        });
+
+        // Show Custom Error Banner (Avoiding native browser alert)
+        function showError(msg) {
+            errorMessage.textContent = msg;
+            errorBanner.classList.remove('hidden');
+            // Scroll smoothly to error message
+            errorBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Close Success Popup Modal
+        modalCloseBtn.addEventListener('click', () => {
+            successModal.classList.remove('opacity-100');
+            successModal.classList.add('opacity-0');
+            setTimeout(() => {
+                successModal.classList.add('hidden');
+                successModal.classList.remove('flex');
+            }, 300);
+        });
+
+        // Live Search Handler
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderSoftwares();
+        });
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderTopPicks();
+            renderSoftwares();
+        });
+    </script>
+</body>
+</html>

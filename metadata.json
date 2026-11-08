@@ -1,0 +1,6 @@
+{
+  "name": "exe.pro.bd — Direct Software & Utility Repository",
+  "description": "Verified PC utilities, developer toolchains, multimedia suites, and browser binaries with direct one-click downloads and zero redirects.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
